@@ -21,17 +21,25 @@ export const portalLinks = [
   },
 ];
 
+export const directorLinks = [
+  {
+    name: "View Leaves",
+    url: "/view-director-leaves",
+  },
+];
+
+
 export const adminLinks = [
-    {
-      name: "Rooms",
-      url: "/rooms",
-    },
-    {
-      name: "Create Room",
-      url: "/create-room",
-    },
-    {
-      name: "View Leaves",
-      url: "/view-leaves",
-    }
-  ];
+  {
+    name: "Rooms",
+    url: "/rooms",
+  },
+  {
+    name: "Create Room",
+    url: "/create-room",
+  },
+  {
+    name: "View Leaves",
+    url: "/view-leaves",
+  },
+];

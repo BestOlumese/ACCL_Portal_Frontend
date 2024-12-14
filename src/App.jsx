@@ -19,6 +19,8 @@ import CreateRoom from "./pages/protected/room/CreateRoom";
 import Rooms from "./pages/protected/room/Rooms";
 import EditRoom from "./pages/protected/room/EditRoom";
 import ViewLeaves from "./pages/protected/leave/ViewLeaves";
+import DirectorLayout from "./components/protected/DirectorLayout";
+import ViewDirectorLeaves from "./pages/protected/leave/ViewDirectorLeaves";
 
 function App() {
   // Create a client
@@ -27,11 +29,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
+          {/* Auth routes */}
           <Route path="/" element={<AuthLayout />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Route>
 
+          {/* Protected routes */}
           <Route path="/" element={<ProtectedLayout />}>
             <Route index element={<Home />} />
             <Route path="your-meetings" element={<YourMeetings />} />
@@ -43,6 +47,14 @@ function App() {
             <Route path="take-a-leave" element={<TakeALeave />} />
           </Route>
 
+          {/* Director routes */}
+          <Route path="" element={<ProtectedLayout />}>
+            <Route path="/" element={<DirectorLayout />}>
+              <Route path="view-director-leaves" element={<ViewDirectorLeaves />} />
+            </Route>
+          </Route>
+
+          {/* Admin routes */}
           <Route path="" element={<ProtectedLayout />}>
             <Route path="/" element={<AdminLayout />}>
               <Route path="rooms" element={<Rooms />} />

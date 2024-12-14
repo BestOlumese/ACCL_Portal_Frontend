@@ -16,8 +16,14 @@ import { Textarea } from "@/components/ui/textarea";
 import DatePicker from "@/components/ui/date-picker";
 import { Loader2 } from "lucide-react";
 import useTakeALeaveMutation from "@/hooks/mutations/useTakeALeaveMutation";
+import useDirector from "@/hooks/use-director";
+import toast from "react-hot-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useNavigate } from "react-router-dom";
 
 export default function TakeALeaveForm() {
+  const { data, isPending, isError } = useDirector();
+  const navigate = useNavigate();
   const mutation = useTakeALeaveMutation();
 
   // 1. Define your form.
@@ -27,8 +33,18 @@ export default function TakeALeaveForm() {
       content: "",
       start_date: "",
       end_date: "",
+      director: 0,
     },
   });
+
+  if (isError) {
+    toast.error("something went wrong");
+    navigate("/");
+  }
+
+  if (isPending) {
+    return <h1>Loading...</h1>;
+  }
 
   // 2. Define a submit handler.
   function onSubmit(values) {
@@ -77,6 +93,42 @@ export default function TakeALeaveForm() {
               <FormLabel>End Date</FormLabel>
               <FormControl>
                 <DatePicker control={form.control} name="end_date" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="director"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Director</FormLabel>
+              <FormControl>
+                <Select
+                  value={field.value ? String(field.value) : ""} // Convert value to string for the Select component
+                  onValueChange={(value) => field.onChange(Number(value))} // Parse value to number
+                >
+                  <SelectTrigger>
+                    <SelectValue>
+                      {/* Display selected director name */}
+                      {field.value
+                        ? data?.data.find((director) => director.id === field.value)
+                            ?.username || "Select your director"
+                        : "Select your director"}
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {data?.data.map((director_data) => (
+                      <SelectItem
+                        key={director_data.id}
+                        value={String(director_data.id)}
+                      >
+                        {director_data.username}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -1,7 +1,13 @@
 import api from "@/api";
 
-export const fetchLeavesList = async () => {
-  const leaves = api.get("leave/list/");
+export const fetchLeavesList = async (id) => {
+  if (!id) {
+    const leaves = api.get("leave/list/");
 
-  return leaves;
+    return leaves;
+  } else {
+    const leaves = api.get("leave/directorlist/");
+
+    return leaves;
+  }
 };

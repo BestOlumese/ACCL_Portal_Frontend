@@ -12,6 +12,7 @@ export default function useEditLeaveMutation(id) {
         navigate("/leaves");
     },
     onError: (error) => {
+      toast.error(error.response.data[0])
       console.log(error);
     },
   });

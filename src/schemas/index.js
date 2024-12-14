@@ -31,6 +31,9 @@ export const leaveSchema = z
     content: z.string().min(1, { message: "The field is required!" }),
     start_date: z.date().transform((val) => val.toISOString().slice(0, 10)),
     end_date: z.date().transform((val) => val.toISOString().slice(0, 10)),
+    director: z.number().refine((value) => value !== 0, {
+      message: "You have to select a director",
+    }),
   })
   .superRefine((values, ctx) => {
     if (values.end_date < values.start_date) {

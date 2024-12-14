@@ -19,7 +19,7 @@ import {
 import { ChevronUp, User2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { notActive } from "@/redux/features/auth/authSlice";
-import { adminLinks, portalLinks } from "@/constatnts";
+import { adminLinks, directorLinks, portalLinks } from "@/constatnts";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import useAuth from "@/hooks/use-auth";
@@ -68,6 +68,35 @@ export default function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        {decodedToken.is_staff && (
+          <SidebarGroup>
+            <SidebarGroupLabel className="text-md text-primary font-bold">
+              Director Links
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu className="mt-2">
+                {directorLinks.map((director) => (
+                  <SidebarMenuItem key={director.name}>
+                    <SidebarMenuButton asChild>
+                      <Link
+                        to={director.url}
+                        className={cn(
+                          "text-[17px] font-medium hover:text-primary",
+                          {
+                            "text-primary": location.pathname == director.url,
+                          }
+                        )}
+                      >
+                        {/* <director.icon /> */}
+                        <span>{director.name}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
         {decodedToken.is_superuser && (
           <SidebarGroup>
             <SidebarGroupLabel className="text-md text-primary font-bold">
