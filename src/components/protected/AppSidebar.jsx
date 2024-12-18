@@ -59,7 +59,6 @@ export default function AppSidebar() {
                         }
                       )}
                     >
-                      {/* <portal.icon /> */}
                       <span>{portal.name}</span>
                     </Link>
                   </SidebarMenuButton>
