@@ -158,7 +158,7 @@ export default function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton className="text-primary">
-                  <User2 /> {decodedToken.username}
+                  <User2 /> {decodedToken.first_name + ' '} {decodedToken.last_name}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>

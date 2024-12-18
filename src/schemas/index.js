@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const signupSchema = z.object({
-  firstname: z.string().min(1, { message: "The field is required!" }).max(50),
-  lastname: z.string().min(1, { message: "The field is required!" }).max(50),
+  first_name: z.string().min(1, { message: "The field is required!" }).max(50),
+  last_name: z.string().min(1, { message: "The field is required!" }).max(50),
   username: z.string().min(1, { message: "The field is required!" }).max(50),
   password: z
     .string()

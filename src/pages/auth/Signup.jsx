@@ -20,8 +20,8 @@ export default function Signup() {
   const form = useForm({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      firstname: "",
-      lastname: "",
+      first_name: "",
+      last_name: "",
       username: "",
       password: "",
     },
@@ -45,7 +45,7 @@ export default function Signup() {
           <div className="grid grid-cols-2 gap-3">
             <FormField
               control={form.control}
-              name="firstname"
+              name="first_name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>First Name</FormLabel>
@@ -58,7 +58,7 @@ export default function Signup() {
             />
             <FormField
               control={form.control}
-              name="lastname"
+              name="last_name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
