@@ -19,7 +19,7 @@ import {
 import { ChevronUp, User2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { notActive } from "@/redux/features/auth/authSlice";
-import { adminLinks, directorLinks, portalLinks } from "@/constatnts";
+import { adminLinks, directorLinks, leavesLinks, meetingsLinks } from "@/constatnts";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import useAuth from "@/hooks/use-auth";
@@ -43,23 +43,49 @@ export default function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-md text-primary font-bold">
-            User Links
+            Meetings Links
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="mt-2">
-              {portalLinks.map((portal) => (
-                <SidebarMenuItem key={portal.name}>
+              {meetingsLinks.map((meetingLink) => (
+                <SidebarMenuItem key={meetingLink.name}>
                   <SidebarMenuButton asChild>
                     <Link
-                      to={portal.url}
+                      to={meetingLink.url}
                       className={cn(
                         "text-[17px] font-medium hover:text-primary",
                         {
-                          "text-primary": location.pathname == portal.url,
+                          "text-primary": location.pathname == meetingLink.url,
                         }
                       )}
                     >
-                      <span>{portal.name}</span>
+                      <span>{meetingLink.name}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-md text-primary font-bold">
+            Leaves Links
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu className="mt-2">
+              {leavesLinks.map((leaveLink) => (
+                <SidebarMenuItem key={leaveLink.name}>
+                  <SidebarMenuButton asChild>
+                    <Link
+                      to={leaveLink.url}
+                      className={cn(
+                        "text-[17px] font-medium hover:text-primary",
+                        {
+                          "text-primary": location.pathname == leaveLink.url,
+                        }
+                      )}
+                    >
+                      <span>{leaveLink.name}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

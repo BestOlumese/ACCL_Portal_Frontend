@@ -1,6 +1,6 @@
-export const portalLinks = [
+export const meetingsLinks = [
   {
-    name: "Meetings",
+    name: "All Meetings",
     url: "/",
   },
   {
@@ -10,7 +10,10 @@ export const portalLinks = [
   {
     name: "Create Meeting",
     url: "/create-meeting",
-  },
+  }
+];
+
+export const leavesLinks = [
   {
     name: "Leaves",
     url: "/leaves",
