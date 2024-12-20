@@ -29,7 +29,9 @@ export default function YourMeetingTable() {
   const [open, setOpen] = useState(false);
   const [meetingId, setMeetingId] = useState(0);
   const { isPending, data } = useYourMeeting();
-  const excelData = data?.data;
+  const excelData = data?.data.map((item) => ({
+    ...item,
+  }));
   excelData?.forEach((item, index) => {
     delete item.id;
     delete item.user_firstname;

@@ -51,7 +51,7 @@ export default function ViewMeeting() {
         </div>
         <div>
           <h2 className="font-medium text-primary mb-1">User:</h2>
-          <p>{data?.data.username}</p>
+          <p>{data?.data.user_name}</p>
         </div>
         {data?.data.extra_notes && (
           <div>
