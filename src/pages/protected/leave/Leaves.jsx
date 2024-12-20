@@ -18,7 +18,7 @@ export default function Leaves() {
         <h1 className="font-bold text-3xl text-primary">Leaves</h1>
         <div className="flex flex-col max-sm:items-center">
           <p className="font-medium text-md text-primary">Remaining Leaves: {data?.data?.leaves}</p>
-          <p className="font-medium text-md text-primary">Total Leaves: {decodedToken.total_leaves}</p>
+          <p className="font-medium text-md text-primary">Total Leaves: {data?.data?.total_leaves}</p>
         </div>
       </div>
       <div className="mt-4">
