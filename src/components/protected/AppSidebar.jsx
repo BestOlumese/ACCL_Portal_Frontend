@@ -34,7 +34,7 @@ export default function AppSidebar() {
   }
 
   return (
-    <Sidebar className="shadow-sm">
+    <Sidebar className="shadow-sm bg-white">
       <SidebarHeader>
         <h1 className="font-bold text-2xl text-center text-primary">
           ACCL Portal
@@ -43,7 +43,7 @@ export default function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-md text-primary font-bold">
-            Meetings Links
+            Meeting
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="mt-2">
@@ -59,6 +59,7 @@ export default function AppSidebar() {
                         }
                       )}
                     >
+                      <meetingLink.icon />
                       <span>{meetingLink.name}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -69,7 +70,7 @@ export default function AppSidebar() {
         </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel className="text-md text-primary font-bold">
-            Leaves Links
+            Leave
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="mt-2">
@@ -85,6 +86,7 @@ export default function AppSidebar() {
                         }
                       )}
                     >
+                      <leaveLink.icon />
                       <span>{leaveLink.name}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -96,7 +98,7 @@ export default function AppSidebar() {
         {decodedToken.is_staff && (
           <SidebarGroup>
             <SidebarGroupLabel className="text-md text-primary font-bold">
-              Director Links
+              Director
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu className="mt-2">
@@ -112,7 +114,7 @@ export default function AppSidebar() {
                           }
                         )}
                       >
-                        {/* <director.icon /> */}
+                        <director.icon />
                         <span>{director.name}</span>
                       </Link>
                     </SidebarMenuButton>
@@ -125,7 +127,7 @@ export default function AppSidebar() {
         {decodedToken.is_superuser && (
           <SidebarGroup>
             <SidebarGroupLabel className="text-md text-primary font-bold">
-              Admin Links
+              Admin
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu className="mt-2">
@@ -141,7 +143,7 @@ export default function AppSidebar() {
                           }
                         )}
                       >
-                        {/* <admin.icon /> */}
+                        <admin.icon />
                         <span>{admin.name}</span>
                       </Link>
                     </SidebarMenuButton>
