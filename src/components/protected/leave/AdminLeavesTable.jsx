@@ -28,7 +28,7 @@ export default function AdminLeavesTable() {
   const [leavesId, setLeavesId] = useState(0);
   const [status, setStatus] = useState("");
   const { isPending, data } = useLeavesList();
-  console.log(data);
+  // helo
 
   if (isPending) {
     return <h1>Loading...</h1>;
