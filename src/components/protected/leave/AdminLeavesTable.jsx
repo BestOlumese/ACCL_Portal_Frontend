@@ -171,7 +171,7 @@ export default function AdminLeavesTable() {
         </>
       ) : (
         <h1 className="text-center text-lg font-medium text-primary">
-          You don't have any leaves requests
+          You don&apos;t have any leaves requests
         </h1>
       )}
     </>
