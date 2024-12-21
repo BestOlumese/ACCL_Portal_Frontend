@@ -6,25 +6,25 @@ import { Link } from "react-router-dom";
 export default function MeetingCard({ meeting }) {
   return (
     <Link to={`/view-meeting/${meeting.id}`}>
-      <Card className="border border-primary bg-white shadow-sm p-3 hover:shadow-md">
+      <Card className="bg-white shadow-md p-3 hover:shadow-xl">
         <CardTitle className="p-0">
           <h1 className="font-bold text-xl text-primary">{meeting.title}</h1>
         </CardTitle>
         <CardContent className="p-0 pt-2 flex flex-col gap-1">
-          <p className="font-medium text-md  flex justify-between items-center">
+          <p className="font-medium text-md  flex justify-between items-center text-gray-500">
             <span className="text-primary">Date:</span> {meeting.day}
           </p>
-          <p className="font-medium text-md flex justify-between items-center">
+          <p className="font-medium text-md flex justify-between items-center text-gray-500">
             <span className="text-primary">Starting:</span> {meeting.start_time}
           </p>
-          <p className="font-medium text-md  flex justify-between items-center">
+          <p className="font-medium text-md  flex justify-between items-center text-gray-500">
             <span className="text-primary">Ending:</span> {meeting.end_time}
           </p>
         </CardContent>
         <CardFooter className="p-0 pt-4">
           <div className="flex gap-2 items-center text-primary font-medium">
             <User2 />
-            {meeting.username}
+            {meeting.user_name}
           </div>
         </CardFooter>
       </Card>

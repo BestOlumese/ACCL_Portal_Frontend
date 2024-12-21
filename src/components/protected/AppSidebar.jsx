@@ -19,7 +19,7 @@ import {
 import { ChevronUp, User2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { notActive } from "@/redux/features/auth/authSlice";
-import { adminLinks, directorLinks, portalLinks } from "@/constatnts";
+import { adminLinks, directorLinks, leavesLinks, meetingsLinks } from "@/constatnts";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import useAuth from "@/hooks/use-auth";
@@ -34,7 +34,7 @@ export default function AppSidebar() {
   }
 
   return (
-    <Sidebar className="shadow-sm">
+    <Sidebar className="shadow-sm bg-white">
       <SidebarHeader>
         <h1 className="font-bold text-2xl text-center text-primary">
           ACCL Portal
@@ -43,24 +43,51 @@ export default function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-md text-primary font-bold">
-            User Links
+            Meeting
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="mt-2">
-              {portalLinks.map((portal) => (
-                <SidebarMenuItem key={portal.name}>
+              {meetingsLinks.map((meetingLink) => (
+                <SidebarMenuItem key={meetingLink.name}>
                   <SidebarMenuButton asChild>
                     <Link
-                      to={portal.url}
+                      to={meetingLink.url}
                       className={cn(
                         "text-[17px] font-medium hover:text-primary",
                         {
-                          "text-primary": location.pathname == portal.url,
+                          "text-primary": location.pathname == meetingLink.url,
                         }
                       )}
                     >
-                      {/* <portal.icon /> */}
-                      <span>{portal.name}</span>
+                      <meetingLink.icon />
+                      <span>{meetingLink.name}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-md text-primary font-bold">
+            Leave
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu className="mt-2">
+              {leavesLinks.map((leaveLink) => (
+                <SidebarMenuItem key={leaveLink.name}>
+                  <SidebarMenuButton asChild>
+                    <Link
+                      to={leaveLink.url}
+                      className={cn(
+                        "text-[17px] font-medium hover:text-primary",
+                        {
+                          "text-primary": location.pathname == leaveLink.url,
+                        }
+                      )}
+                    >
+                      <leaveLink.icon />
+                      <span>{leaveLink.name}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -71,7 +98,7 @@ export default function AppSidebar() {
         {decodedToken.is_staff && (
           <SidebarGroup>
             <SidebarGroupLabel className="text-md text-primary font-bold">
-              Director Links
+              Director
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu className="mt-2">
@@ -87,7 +114,7 @@ export default function AppSidebar() {
                           }
                         )}
                       >
-                        {/* <director.icon /> */}
+                        <director.icon />
                         <span>{director.name}</span>
                       </Link>
                     </SidebarMenuButton>
@@ -100,7 +127,7 @@ export default function AppSidebar() {
         {decodedToken.is_superuser && (
           <SidebarGroup>
             <SidebarGroupLabel className="text-md text-primary font-bold">
-              Admin Links
+              Admin
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu className="mt-2">
@@ -116,7 +143,7 @@ export default function AppSidebar() {
                           }
                         )}
                       >
-                        {/* <admin.icon /> */}
+                        <admin.icon />
                         <span>{admin.name}</span>
                       </Link>
                     </SidebarMenuButton>
@@ -133,7 +160,7 @@ export default function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton className="text-primary">
-                  <User2 /> {decodedToken.username}
+                  <User2 /> {decodedToken.first_name + ' '} {decodedToken.last_name}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>

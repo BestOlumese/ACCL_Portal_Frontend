@@ -1,6 +1,10 @@
 import React from "react";
 import { useController } from "react-hook-form";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
@@ -10,14 +14,18 @@ const DatePicker = ({ control, name, label }) => {
 
   return (
     <div>
-      {label && <label className="block text-sm font-medium mb-1">{label}</label>}
+      {label && (
+        <label className="block text-sm font-medium mb-1">{label}</label>
+      )}
       <Popover>
         <PopoverTrigger asChild>
           <div className="relative">
             <Input
               type="text"
               placeholder="Select a date"
-              value={field.value ? new Date(field.value).toLocaleDateString() : ""}
+              value={
+                field.value ? new Date(field.value).toLocaleDateString() : ""
+              }
               readOnly
               className="pr-10"
             />
@@ -28,7 +36,14 @@ const DatePicker = ({ control, name, label }) => {
           <Calendar
             mode="single"
             selected={field.value ? new Date(field.value) : undefined}
-            onSelect={(date) => field.onChange(date)}
+            onSelect={(date) => {
+              if (date) {
+                const utcDate = new Date(
+                  Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+                );
+                field.onChange(utcDate);
+              }
+            }}
             className="rounded-md"
           />
         </PopoverContent>

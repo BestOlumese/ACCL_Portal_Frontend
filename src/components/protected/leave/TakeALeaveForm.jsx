@@ -18,7 +18,13 @@ import { Loader2 } from "lucide-react";
 import useTakeALeaveMutation from "@/hooks/mutations/useTakeALeaveMutation";
 import useDirector from "@/hooks/use-director";
 import toast from "react-hot-toast";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
 
 export default function TakeALeaveForm() {
@@ -113,8 +119,13 @@ export default function TakeALeaveForm() {
                     <SelectValue>
                       {/* Display selected director name */}
                       {field.value
-                        ? data?.data.find((director) => director.id === field.value)
-                            ?.username || "Select your director"
+                        ? data?.data.find(
+                            (director) => director.id === field.value
+                          )?.first_name +
+                          " " +
+                          (data?.data.find(
+                            (director) => director.id === field.value
+                          )?.last_name || "Select your director")
                         : "Select your director"}
                     </SelectValue>
                   </SelectTrigger>
@@ -124,7 +135,8 @@ export default function TakeALeaveForm() {
                         key={director_data.id}
                         value={String(director_data.id)}
                       >
-                        {director_data.username}
+                        {director_data.first_name}{" "}
+                        {" " + director_data.last_name}
                       </SelectItem>
                     ))}
                   </SelectContent>
