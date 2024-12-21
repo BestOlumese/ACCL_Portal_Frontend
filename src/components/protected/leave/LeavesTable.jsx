@@ -44,7 +44,6 @@ export default function LeavesTable() {
 
     item["s/n"] = index + 1;
   });
-  console.log(excelData);
 
   const exportToExcel = (data, fileName) => {
     // Convert data to a worksheet

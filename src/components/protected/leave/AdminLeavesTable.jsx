@@ -22,13 +22,40 @@ import { useState } from "react";
 import useLeavesList from "@/hooks/use-leaves-list";
 import StatusChangeConfirmation from "./StatusChangeConfirmation";
 import { cn } from "@/lib/utils";
+import * as XLSX from "xlsx";
 
 export default function AdminLeavesTable() {
   const [open, setOpen] = useState(false);
   const [leavesId, setLeavesId] = useState(0);
   const [status, setStatus] = useState("");
   const { isPending, data } = useLeavesList();
-  console.log(data);
+  
+  const excelData = data?.data.map((item) => ({
+    ...item,
+  }));
+  excelData?.forEach((item, index) => {
+    delete item.id;
+    delete item.user_firstname;
+    delete item.user_lastname;
+    delete item.director;
+    delete item.director_firstname;
+    delete item.director_lastname;
+    delete item.created_at;
+
+    item["s/n"] = index + 1;
+  });
+
+  const exportToExcel = (data, fileName) => {
+    // Convert data to a worksheet
+    const worksheet = XLSX.utils.json_to_sheet(data);
+
+    // Create a workbook
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+    // Export to Excel
+    XLSX.writeFile(workbook, `${fileName}.xlsx`);
+  };
 
   if (isPending) {
     return <h1>Loading...</h1>;
@@ -36,6 +63,13 @@ export default function AdminLeavesTable() {
 
   return (
     <>
+      <Button
+        size="sm"
+        className="mb-2"
+        onClick={() => exportToExcel(excelData, "Leaves")}
+      >
+        Export to excel
+      </Button>
       {data?.data.length > 0 ? (
         <>
           <Table className="w-full max-md:w-[800px] border border-blue-300 shadow-sm">
@@ -45,7 +79,7 @@ export default function AdminLeavesTable() {
             <TableHeader className="bg-blue-200">
               <TableRow>
                 <TableHead className="text-blue-800 font-semibold">
-                  Username
+                  Name
                 </TableHead>
                 <TableHead className="text-blue-800 font-semibold">
                   Reason
@@ -71,7 +105,7 @@ export default function AdminLeavesTable() {
                   className="hover:bg-blue-100 transition-colors"
                 >
                   <TableCell className="font-medium text-blue-900">
-                    {leave.username}
+                    {leave.user_name}
                   </TableCell>
                   <TableCell className="font-medium text-blue-900">
                     {leave.content}
