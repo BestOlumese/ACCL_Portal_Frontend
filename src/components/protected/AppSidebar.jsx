@@ -46,14 +46,14 @@ export default function AppSidebar() {
             Meeting
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="mt-2">
+            <SidebarMenu className="mt-1">
               {meetingsLinks.map((meetingLink) => (
                 <SidebarMenuItem key={meetingLink.name}>
                   <SidebarMenuButton asChild>
                     <Link
                       to={meetingLink.url}
                       className={cn(
-                        "text-[17px] font-medium hover:text-primary",
+                        "text-[17px] font-semibold hover:text-primary",
                         {
                           "text-primary": location.pathname == meetingLink.url,
                         }
@@ -73,14 +73,14 @@ export default function AppSidebar() {
             Leave
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="mt-2">
+            <SidebarMenu className="mt-1">
               {leavesLinks.map((leaveLink) => (
                 <SidebarMenuItem key={leaveLink.name}>
                   <SidebarMenuButton asChild>
                     <Link
                       to={leaveLink.url}
                       className={cn(
-                        "text-[17px] font-medium hover:text-primary",
+                        "text-[17px] font-semibold hover:text-primary",
                         {
                           "text-primary": location.pathname == leaveLink.url,
                         }
@@ -101,14 +101,14 @@ export default function AppSidebar() {
               Director
             </SidebarGroupLabel>
             <SidebarGroupContent>
-              <SidebarMenu className="mt-2">
+              <SidebarMenu className="mt-1">
                 {directorLinks.map((director) => (
                   <SidebarMenuItem key={director.name}>
                     <SidebarMenuButton asChild>
                       <Link
                         to={director.url}
                         className={cn(
-                          "text-[17px] font-medium hover:text-primary",
+                          "text-[17px] font-semibold hover:text-primary",
                           {
                             "text-primary": location.pathname == director.url,
                           }
@@ -130,14 +130,14 @@ export default function AppSidebar() {
               Admin
             </SidebarGroupLabel>
             <SidebarGroupContent>
-              <SidebarMenu className="mt-2">
+              <SidebarMenu className="mt-1">
                 {adminLinks.map((admin) => (
                   <SidebarMenuItem key={admin.name}>
                     <SidebarMenuButton asChild>
                       <Link
                         to={admin.url}
                         className={cn(
-                          "text-[17px] font-medium hover:text-primary",
+                          "text-[17px] font-semibold hover:text-primary",
                           {
                             "text-primary": location.pathname == admin.url,
                           }
