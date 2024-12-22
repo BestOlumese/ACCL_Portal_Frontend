@@ -21,6 +21,7 @@ import EditRoom from "./pages/protected/room/EditRoom";
 import ViewLeaves from "./pages/protected/leave/ViewLeaves";
 import DirectorLayout from "./components/protected/DirectorLayout";
 import ViewDirectorLeaves from "./pages/protected/leave/ViewDirectorLeaves";
+import ScheduleMeetings from "./pages/protected/meetings/ScheduleMeetings";
 
 function App() {
   // Create a client
@@ -38,6 +39,7 @@ function App() {
           {/* Protected routes */}
           <Route path="/" element={<ProtectedLayout />}>
             <Route index element={<Home />} />
+            <Route path="schedule-meetings" element={<ScheduleMeetings />} />
             <Route path="your-meetings" element={<YourMeetings />} />
             <Route path="create-meeting" element={<CreateMeeting />} />
             <Route path="view-meeting/:id" element={<ViewMeeting />} />

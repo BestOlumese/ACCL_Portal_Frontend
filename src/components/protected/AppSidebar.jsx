@@ -19,7 +19,7 @@ import {
 import { ChevronUp, User2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { notActive } from "@/redux/features/auth/authSlice";
-import { adminLinks, directorLinks, leavesLinks, meetingsLinks } from "@/constatnts";
+import { adminLinks, directorLinks, leavesLinks, meetingsLinks } from "@/constants";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import useAuth from "@/hooks/use-auth";
