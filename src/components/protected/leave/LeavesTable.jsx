@@ -25,8 +25,10 @@ import useLeaves from "@/hooks/use-leaves";
 import DeleteLeaveConfirmation from "./DeleteLeaveConfirmation";
 import { cn } from "@/lib/utils";
 import * as XLSX from "xlsx";
+import useAuth from "@/hooks/use-auth";
 
 export default function LeavesTable() {
+  const { decodedToken } = useAuth();
   const [open, setOpen] = useState(false);
   const [leavesId, setLeavesId] = useState(0);
   const { isPending, data } = useLeaves();
@@ -37,6 +39,7 @@ export default function LeavesTable() {
     delete item.id;
     delete item.user_firstname;
     delete item.user_lastname;
+    delete item.user;
     delete item.director;
     delete item.director_firstname;
     delete item.director_lastname;
@@ -79,7 +82,7 @@ export default function LeavesTable() {
             <TableHeader className="bg-blue-200">
               <TableRow>
                 <TableHead className="text-blue-800 font-semibold">
-                  Reason
+                  Name
                 </TableHead>
                 <TableHead className="text-blue-800 font-semibold">
                   Start Date
@@ -102,7 +105,7 @@ export default function LeavesTable() {
                   className="hover:bg-blue-100 transition-colors"
                 >
                   <TableCell className="font-medium text-blue-900">
-                    {leave.content}
+                    {leave.user_name}
                   </TableCell>
                   <TableCell className="text-blue-700">
                     {leave.start_date}
@@ -119,32 +122,36 @@ export default function LeavesTable() {
                   >
                     {leave.status}
                   </TableCell>
-                  <TableCell className="text-blue-700 text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                          <span className="sr-only">Open menu</span>
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>
-                          <Link to={`/edit-leave/${leave.id}`}>Edit leave</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                          className="text-red-600"
-                          onClick={() => {
-                            setLeavesId(leave.id);
-                            setOpen(true);
-                          }}
-                        >
-                          Delete leave
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
+                  {decodedToken.user_id == leave.user && (
+                    <TableCell className="text-blue-700 text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" className="h-8 w-8 p-0">
+                            <span className="sr-only">Open menu</span>
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuItem>
+                            <Link to={`/edit-leave/${leave.id}`}>
+                              Edit leave
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem
+                            className="text-red-600"
+                            onClick={() => {
+                              setLeavesId(leave.id);
+                              setOpen(true);
+                            }}
+                          >
+                            Delete leave
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>

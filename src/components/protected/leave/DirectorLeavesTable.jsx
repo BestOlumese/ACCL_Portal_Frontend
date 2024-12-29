@@ -39,6 +39,7 @@ export default function DirectorLeavesTable() {
     delete item.id;
     delete item.user_firstname;
     delete item.user_lastname;
+    delete item.user;
     delete item.director;
     delete item.director_firstname;
     delete item.director_lastname;
