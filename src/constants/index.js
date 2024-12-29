@@ -11,7 +11,7 @@ export const meetingsLinks = [
     icon: MdMeetingRoom,
   },
   {
-    name: "Meetings Calendar",
+    name: "Schedule Meetings",
     url: "/schedule-meetings",
     icon: MdMeetingRoom,
   },

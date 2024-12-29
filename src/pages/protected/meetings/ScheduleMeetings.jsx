@@ -12,7 +12,7 @@ import {
   
   // Replace 'your-license-key' with the actual key
   registerLicense(
-    "Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCf1FpR2tGfV5ycEVDal1QTnVbUj0eQnxTdEFiW31fcXNUR2NYU013XQ=="
+    "Ngo9BigBOggjHTQxAR8/V1NMaF5cXmVCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWH1ceXRSRWlfV0JyXEU="
   );
   
   export default function ScheduleMeetings() {
